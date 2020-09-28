@@ -71,4 +71,10 @@ public class ProductController {
         Product p1 = orderService.selectProductById2(Integer.parseInt(id));
         return p1;
     }
+
+    @GetMapping("/test1")
+    public Product findProductBytest1(@RequestParam String id){
+        Product p1 = orderService.selectProductById2(Integer.parseInt(id));
+        return p1;
+    }
 }
