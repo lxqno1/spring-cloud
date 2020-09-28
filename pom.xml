@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.0.RELEASE</version>
+	</parent>
+
+	<groupId>com.learn</groupId>
+	<artifactId>spring-cloud</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>spring-cloud-parent</name>
+	<description>聚合工程</description>
+
+	<!--
+   注意 最后打包 最外层的pom 需要更改为 pom而不是jar
+   <packaging>jar</packaging>
+   -->
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>spring-cloud-server</module><!--注册中心1-->
+		<module>spring-cloud-eureka</module><!--注册中心2-->
+		<module>spring-cloud-config</module>
+		<!--服务提供者-->
+		<module>spring-cloud-provider</module>
+		<!--rest服务消费者-->
+        <module>spring-cloud-rest</module>
+        <module>spring-cloud-feign</module>
+        <module>spring-cloud-hystrix-turbine</module>
+    </modules>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<spring-cloud.version>2.0.0.RELEASE</spring-cloud.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!--最外层 主项目 添加spring cloud依赖 https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter</artifactId>
+			<version>${spring-cloud.version}</version>
+		</dependency>
+
+	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>Finchley.RELEASE</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
